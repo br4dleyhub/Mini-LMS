@@ -1,0 +1,1 @@
+print("Mini-LMS environment ready")
