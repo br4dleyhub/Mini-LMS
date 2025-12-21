@@ -119,6 +119,7 @@ It is not intended for production use.
 
 ------------------------------------------------    ~~_READ THE DOCUMENTATION_~~    ------------------------------------------------
 
+--------
 
 ## Phase 2 – Python CLI Application
 
