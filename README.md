@@ -1,5 +1,3 @@
-# Mini-LMS
-Learning Management System
 
 # Personal Secure Learning Management System (Mini-LMS)
 
@@ -112,3 +110,64 @@ Instructions will be added in later phases once the application is implemented.
 
 This project is for educational purposes only.  
 It is not intended for production use.
+
+
+
+
+
+--------
+
+----------------------------------    **READ THE DOCUMENTATION**    ----------------------------------
+
+## Phase 2 – Python CLI Application
+
+### Description
+
+In this phase, a command-line based Mini-LMS application was implemented using Python. The goal was to practice core programming concepts and basic backend logic before introducing security or networking complexity.
+
+The application allows users to register, log in, and view a basic profile through a terminal interface.
+
+---
+
+### Features Implemented
+
+- Command-line menu system
+- User registration
+- User login authentication
+- Persistent storage using a JSON file
+- Basic user session handling
+
+---
+
+### Project Structure (Phase 2)
+
+mini-lms/
+
+├── app.py
+
+├── users.json
+
+└── README.md
+
+
+---
+
+### Screenshots
+
+Screenshots will be added to demonstrate:
+- main menu
+- user registration
+- login process
+- profile viewing
+
+---
+
+### Known Limitations
+
+- Passwords are stored in plain text
+- No input validation
+- No protection against brute-force login attempts
+- No concurrent user handling
+
+These limitations are intentional and will be addressed in later phases.
+
