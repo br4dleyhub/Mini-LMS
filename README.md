@@ -157,10 +157,10 @@ mini-lms/
 ### Screenshots
 
 Screenshots are added to demonstrate:
-- [main menu](/screenshots/mainmenu-lms.png)
-- [user registration](/screenshots/userregistration.png)
-- [login process](/screenshots/login_successfully.png)
-- [profile viewing](/screenshots/profile_viewing.png)
+- [main menu](screenshots/mainmenu-lms.png)
+- [user registration](screenshots/userregistration.png)
+- [login process](screenshots/login_successfully.png)
+- [profile viewing](screenshots/profile_viewing.png)
 
 ---
 
