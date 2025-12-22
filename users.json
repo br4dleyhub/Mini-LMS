@@ -1,6 +1,6 @@
 {
-    "Brad": {
-        "password": "admin",
+    "alice": {
+        "password": "$2b$12$aLMmhFEd27qHLVnTb4VdRuTZEyQVG/3gyyYgN5ev2NDrcQ7/Maoj.",
         "role": "admin"
     }
 }

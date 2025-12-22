@@ -173,3 +173,63 @@ Screenshots are added to demonstrate:
 
 These limitations are intentional and will be addressed in later phases.
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Phase 3 – Networking and Authentication
+
+### Description
+
+In this phase, the Mini-LMS was converted from a local CLI application into a client-server system using HTTP. A Flask server handles user registration and authentication, while a separate client sends requests over the network.
+
+Security boundaries were introduced by moving all data handling and validation to the server.
+
+---
+
+### Features Implemented
+
+- Client–server architecture
+- HTTP communication using Flask
+- User registration endpoint
+- User login endpoint
+- Server-side validation
+- Password hashing with bcrypt
+
+---
+
+### Security Improvements
+
+- Plain-text passwords removed
+- One-way password hashing implemented
+- Reduced user enumeration risks
+
+---
+### Screenshots
+
+#### Server Running
+![Server running](screenshots/server_running.png)
+
+#### Client Registration
+![Client register](screenshots/client_register.png)
+
+#### Client Login
+![Client login](screenshots/client_login.png)
+
+#### Client Login fail
+![Client login fail](screenshots/client_login_fail.png)
+
+#### Password Hashing
+![Hashed password](screenshots/hashed_password.png)
+
+---
+### Known Limitations
+
+- No HTTPS (development only)
+- No session management
+- No rate limiting
+- No multi-factor authentication
+
+These limitations will be addressed in later phases.
+
+
