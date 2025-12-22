@@ -159,16 +159,16 @@ mini-lms/
 Screenshots are added to demonstrate:
 
 #### Main Menu
-- ![main menu](screenshots/mainmenu-lms.png)
+![main menu](screenshots/mainmenu-lms.png)
 
 #### User Registration
-- ![user registration](screenshots/userregistration.png)
+![user registration](screenshots/userregistration.png)
 
 #### Login Process
-- ![login process](screenshots/login_successfully.png)
+![login process](screenshots/login_successfully.png)
 
 #### Profile Viewing
-- ![profile viewing](screenshots/profile_viewing.png)
+![profile viewing](screenshots/profile_viewing.png)
 
 ---
 
