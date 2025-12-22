@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import os
 import bcrypt
@@ -22,6 +22,7 @@ def load_users():
 def save_users(users):
     with open(USERS_FILE, "w") as f:
         json.dump(users, f, indent=4)
+
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -57,9 +58,9 @@ def register():
     }
 
     save_users(users)
+    log_event(f"REGISTER success for username {username}")
     return jsonify({"message": "user registered successfully"}), 201
 
-    log_event(f"REGISTER success for username {username}")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -96,7 +97,7 @@ def privacy_notice():
     }), 200
 
 def log_event(event):
-    timestamp = datetime.utcnow().isoformat()
+    timestamp = datetime.now(timezone.utc).isoformat()
     with open("auth.log", "a") as log:
         log.write(f"{timestamp} - {event}\n")
 

@@ -240,4 +240,48 @@ Security boundaries were introduced by moving all data handling and validation t
 
 These limitations will be addressed in later phases.
 
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
 
+## Phase 4 – Ethics and Responsibility
+
+### Description
+
+This phase focuses on ethical considerations and responsible data handling in backend systems. Transparency, accountability, and privacy principles were introduced alongside security features.
+
+---
+
+### Features Implemented
+
+- Privacy notice endpoint
+- Ethical logging of authentication events
+- Timestamped security logs
+- Separation between security data and sensitive information
+
+---
+
+### Ethical Considerations
+
+- Passwords are never logged
+- Only necessary events are recorded
+- User data collection is minimized
+- Transparency is provided regarding stored data
+
+---
+
+### Screenshots
+
+#### Privacy Notice
+![Privacy notice](screenshots/privacy_notice.png)
+
+#### Authentication Logging
+![Auth log](screenshots/auth_log.png)
+
+---
+
+### Known Limitations
+
+- Logs are stored locally
+- No log rotation or retention policy
+- No user-facing consent management
