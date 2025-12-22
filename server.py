@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from datetime import datetime
 import json
 import os
 import bcrypt
@@ -38,6 +39,8 @@ def register():
     if username in users:
         return jsonify({"error": "user already exists"}), 400
 
+    log_event(f"REGISTER attempt for username: {username}")
+
     users[username] = {
         "password": password,
         "role": role
@@ -56,6 +59,7 @@ def register():
     save_users(users)
     return jsonify({"message": "user registered successfully"}), 201
 
+    log_event(f"REGISTER success for username {username}")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -64,8 +68,12 @@ def login():
     username = data.get("username")
     password = data.get("password")
 
+    log_event(f"LOGIN attempt for username: {username}")
+
     if not username or not password:
         return jsonify({"error": "Missing credentials"}), 400
+
+    log_event(f"LOGIN failed for username: {username}")
 
     users = load_users()
 
@@ -77,8 +85,20 @@ def login():
     if not bcrypt.checkpw(password.encode(), stored_hash):
         return jsonify({"error": "Invalid credentials"}), 401
 
+    log_event(f"LOGIN success for username: {username}")
     return jsonify({"message": "Login successful"}), 200
 
+
+@app.route("/privacy", methods=["GET"])
+def privacy_notice():
+    return jsonify({
+        "notice": "This system stores usernames and hashed passwords for educational purposes only."
+    }), 200
+
+def log_event(event):
+    timestamp = datetime.utcnow().isoformat()
+    with open("auth.log", "a") as log:
+        log.write(f"{timestamp} - {event}\n")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,16 @@
+2025-12-22T09:20:36.436006 - REGISTER attempt for username: david
+2025-12-22T09:21:13.679574 - LOGIN attempt for username: david
+2025-12-22T09:21:13.679574 - LOGIN failed for username: david
+2025-12-22T09:21:21.083174 - LOGIN attempt for username: david
+2025-12-22T09:21:21.083174 - LOGIN failed for username: david
+2025-12-22T09:21:34.620391 - LOGIN attempt for username: david
+2025-12-22T09:21:34.620391 - LOGIN failed for username: david
+2025-12-22T09:27:04.786674 - LOGIN attempt for username: david
+2025-12-22T09:27:04.788180 - LOGIN failed for username: david
+2025-12-22T09:27:15.733205 - LOGIN attempt for username: alice
+2025-12-22T09:27:15.734150 - LOGIN failed for username: alice
+2025-12-22T09:27:18.806587 - LOGIN attempt for username: alice
+2025-12-22T09:27:18.808093 - LOGIN failed for username: alice
+2025-12-22T09:28:15.629302 - LOGIN attempt for username: alice
+2025-12-22T09:28:15.630306 - LOGIN failed for username: alice
+2025-12-22T09:28:15.849566 - LOGIN success for username: alice

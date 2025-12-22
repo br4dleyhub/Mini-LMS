@@ -2,5 +2,9 @@
     "alice": {
         "password": "$2b$12$aLMmhFEd27qHLVnTb4VdRuTZEyQVG/3gyyYgN5ev2NDrcQ7/Maoj.",
         "role": "admin"
+    },
+    "david": {
+        "password": "$2b$12$oNvmvZ/WYGPg0EKVeRlO8OmTDm8np0MZyYsRDpWtnTomWQdce99xS",
+        "role": "admin"
     }
 }
