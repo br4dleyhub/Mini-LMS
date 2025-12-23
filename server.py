@@ -1,10 +1,29 @@
 from flask import Flask, request, jsonify
 from datetime import datetime, timezone
-import json
-import os
 import bcrypt
+import sqlite3
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "users.db")
 
 app = Flask(__name__)
+
+def init_db():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            role TEXT NOT NULL
+        )
+    """)
+
+    conn.commit()
+    conn.close()
 
 @app.route("/")
 def home():
@@ -12,16 +31,8 @@ def home():
 
 USERS_FILE = "users.json"
 
-def load_users():
-    if not os.path.exists(USERS_FILE):
-        return{}
-
-    with open(USERS_FILE, "r") as f:
-        return json.load(f)
-
-def save_users(users):
-    with open(USERS_FILE, "w") as f:
-        json.dump(users, f, indent=4)
+def get_db_connection():
+    return sqlite3.connect(DB_PATH)
 
 
 @app.route("/register", methods=["POST"])
@@ -35,31 +46,28 @@ def register():
     if not username or not password or not role:
         return jsonify({"error": "Missing fields"}), 400
 
-    users = load_users()
-
-    if username in users:
-        return jsonify({"error": "user already exists"}), 400
-
-    log_event(f"REGISTER attempt for username: {username}")
-
-    users[username] = {
-        "password": password,
-        "role": role
-    }
-
     hashed_password = bcrypt.hashpw(
         password.encode(),
         bcrypt.gensalt()
-    )
+    ).decode()
 
-    users[username] = {
-        "password": hashed_password.decode(),
-        "role": role
-    }
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
-    save_users(users)
-    log_event(f"REGISTER success for username {username}")
-    return jsonify({"message": "user registered successfully"}), 201
+        cursor.execute(
+            "INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
+            (username, hashed_password, role)
+        )
+
+        conn.commit()
+        conn.close()
+
+        log_event(f"REGISTER success for username: {username}")
+        return jsonify({"message": "User registered successfully"}), 201
+
+    except sqlite3.IntegrityError:
+        return jsonify({"error": "User already exists"}), 400
 
 
 @app.route("/login", methods=["POST"])
@@ -69,26 +77,32 @@ def login():
     username = data.get("username")
     password = data.get("password")
 
-    log_event(f"LOGIN attempt for username: {username}")
-
     if not username or not password:
         return jsonify({"error": "Missing credentials"}), 400
 
-    log_event(f"LOGIN failed for username: {username}")
+    conn = get_db_connection()
+    cursor = conn.cursor()
 
-    users = load_users()
+    cursor.execute(
+        "SELECT password FROM users WHERE username = ?",
+        (username,)
+    )
 
-    if username not in users:
+    row = cursor.fetchone()
+    conn.close()
+
+    if not row:
+        log_event(f"LOGIN failed for username: {username}")
         return jsonify({"error": "Invalid credentials"}), 401
 
-    stored_hash = users[username]["password"].encode()
+    stored_hash = row[0].encode()
 
     if not bcrypt.checkpw(password.encode(), stored_hash):
+        log_event(f"LOGIN failed for username: {username}")
         return jsonify({"error": "Invalid credentials"}), 401
 
     log_event(f"LOGIN success for username: {username}")
     return jsonify({"message": "Login successful"}), 200
-
 
 @app.route("/privacy", methods=["GET"])
 def privacy_notice():
@@ -101,5 +115,16 @@ def log_event(event):
     with open("auth.log", "a") as log:
         log.write(f"{timestamp} - {event}\n")
 
+@app.route("/users", methods=["GET"])
+def list_users():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, username, role FROM users")
+    rows = cursor.fetchall()
+    conn.close()
+
+    return jsonify(rows), 200
+
 if __name__ == "__main__":
+    init_db()
     app.run(debug=True)

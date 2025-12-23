@@ -14,3 +14,4 @@
 2025-12-22T09:28:15.629302 - LOGIN attempt for username: alice
 2025-12-22T09:28:15.630306 - LOGIN failed for username: alice
 2025-12-22T09:28:15.849566 - LOGIN success for username: alice
+2025-12-23T11:26:44.327955+00:00 - REGISTER success for username: alice
