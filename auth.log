@@ -15,3 +15,10 @@
 2025-12-22T09:28:15.630306 - LOGIN failed for username: alice
 2025-12-22T09:28:15.849566 - LOGIN success for username: alice
 2025-12-23T11:26:44.327955+00:00 - REGISTER success for username: alice
+2025-12-23T12:00:36.947194+00:00 - REGISTER success for username: Brad
+2025-12-23T12:01:52.732501+00:00 - LOGIN failed for username: Brad
+2025-12-23T12:02:03.962068+00:00 - LOGIN success for username: Brad
+2025-12-23T12:09:53.133156+00:00 - REGISTER success for username: Carl
+2025-12-23T12:12:22.252539+00:00 - REGISTER success for username: UNIQUE
+2025-12-23T12:27:22.974227+00:00 - REGISTER success for username: Nicko
+2025-12-23T12:28:45.138720+00:00 - LOGIN success for username: Nicko

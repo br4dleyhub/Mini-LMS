@@ -285,3 +285,56 @@ This phase focuses on ethical considerations and responsible data handling in ba
 - Logs are stored locally
 - No log rotation or retention policy
 - No user-facing consent management
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Phase 5 – Secure Web Upgrade (SQLite)
+
+### Description
+
+This phase replaces file-based storage with a relational database using SQLite. User data is now persisted securely with enforced constraints and transactional safety.
+
+---
+
+### Features Implemented
+
+- SQLite database integration
+- Structured user storage
+- Unique username enforcement
+- Secure password hashing
+- Improved concurrency handling
+
+---
+
+### Security Improvements
+
+- Reduced data corruption risk
+- Database-enforced integrity
+- Defense-in-depth for credential storage
+
+---
+
+### Screenshots
+
+#### Database created
+![Database created](screenshots/db-created.png)
+
+#### Successful registration (client output)
+![Successful registration (client output)](screenshots/successful_registration.png)
+
+#### Successful login
+![Successful login](screenshots/successful_login.png)
+
+#### Database content (no plain passwords)
+![Database content](screenshots/Database_content.png)
+
+---
+
+
+### Known Limitations
+
+- SQLite used for learning purposes
+- No database encryption at rest
+- No connection pooling
