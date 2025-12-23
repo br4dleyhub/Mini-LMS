@@ -338,3 +338,30 @@ This phase replaces file-based storage with a relational database using SQLite. 
 - SQLite used for learning purposes
 - No database encryption at rest
 - No connection pooling
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Phase 6 – Java Backend Preparation
+
+### Description
+
+This phase prepares the backend logic for a Java implementation by mapping Python/Flask concepts to Java and object-oriented design. The goal is to reduce friction when transitioning to Java-based REST backends.
+
+---
+
+### Key Concepts
+
+- Object-oriented programming
+- Entity-to-database mapping
+- Controller and service separation
+- Backend logic portability across languages
+
+---
+
+### Learning Outcome
+
+- Reduced fear of Java
+- Clear understanding of backend structure
+- Ability to translate Python logic into Java
