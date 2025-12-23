@@ -319,7 +319,7 @@ This phase replaces file-based storage with a relational database using SQLite. 
 ### Screenshots
 
 #### Database created
-![Database created](screenshots/db-created.png)
+![Database created](screenshots/db_created.png)
 
 #### Successful registration (client output)
 ![Successful registration (client output)](screenshots/successful_registration.png)
