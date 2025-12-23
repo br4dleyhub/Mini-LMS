@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+</head>
+<body>
+
+<h2>Register</h2>
+
+<form method="post" action="/register">
+    <label>Username:</label>
+    <input type="text" name="username" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br><br>
+
+    <label>Role:</label>
+    <select name="role">
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+    </select><br><br>
+
+    <button type="submit">Register</button>
+</form>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from datetime import datetime, timezone
 import bcrypt
 import sqlite3
@@ -37,7 +37,10 @@ def get_db_connection():
 
 @app.route("/register", methods=["POST"])
 def register():
-    data = request.get_json()
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form
 
     username = data.get("username")
     password = data.get("password")
@@ -69,10 +72,16 @@ def register():
     except sqlite3.IntegrityError:
         return jsonify({"error": "User already exists"}), 400
 
+@app.route("/register", methods=["GET"])
+def register_page():
+    return render_template("register.html")
 
 @app.route("/login", methods=["POST"])
 def login():
-    data = request.get_json()
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form
 
     username = data.get("username")
     password = data.get("password")
@@ -103,6 +112,10 @@ def login():
 
     log_event(f"LOGIN success for username: {username}")
     return jsonify({"message": "Login successful"}), 200
+
+@app.route("/login", methods=["GET"])
+def login_page():
+    return render_template("login.html")
 
 @app.route("/privacy", methods=["GET"])
 def privacy_notice():
