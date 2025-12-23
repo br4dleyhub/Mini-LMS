@@ -22,3 +22,8 @@
 2025-12-23T12:12:22.252539+00:00 - REGISTER success for username: UNIQUE
 2025-12-23T12:27:22.974227+00:00 - REGISTER success for username: Nicko
 2025-12-23T12:28:45.138720+00:00 - LOGIN success for username: Nicko
+2025-12-23T14:44:53.528175+00:00 - REGISTER success for username: Kala
+2025-12-23T14:45:47.866806+00:00 - LOGIN failed for username: Kala
+2025-12-23T14:46:12.243668+00:00 - LOGIN failed for username: Kala
+2025-12-23T15:06:08.538201+00:00 - REGISTER success for username: admin
+2025-12-23T15:07:09.477333+00:00 - LOGIN success for username: admin

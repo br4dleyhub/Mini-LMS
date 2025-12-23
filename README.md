@@ -332,7 +332,6 @@ This phase replaces file-based storage with a relational database using SQLite. 
 
 ---
 
-
 ### Known Limitations
 
 - SQLite used for learning purposes
@@ -365,3 +364,49 @@ This phase prepares the backend logic for a Java implementation by mapping Pytho
 - Reduced fear of Java
 - Clear understanding of backend structure
 - Ability to translate Python logic into Java
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+## Phase 7 – Web Programming (Frontend)
+
+### Description
+
+This phase completes the Mini-LMS by introducing a web-based frontend using HTML and CSS. Browser-based forms communicate with the Flask backend, completing the full-stack architecture.
+
+---
+
+### Features Implemented
+
+- HTML registration and login forms
+- Browser-to-backend communication
+- Input validation on frontend and backend
+- Integration with database and logging
+- End-to-end user flow
+
+---
+
+### Registration Page
+![Registration Page](screenshots/register_page.png)
+
+#### Login Page
+![Login Page](screenshots/login_page.png)
+
+#### Successful Registration
+![Successful Registration](screenshots/register_success.png)
+
+#### Successful Login
+![Successful Login](screenshots/login_success.png)
+
+#### Database Content
+![Database Content](screenshots/db_content.png)
+
+---
+
+### Security Considerations
+
+- Frontend treated as untrusted
+- Backend validation enforced
+- No sensitive data exposed in UI
+- Known limitations: no HTTPS, no sessions, no CSRF protection
