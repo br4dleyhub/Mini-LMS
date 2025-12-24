@@ -1,13 +1,20 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, session
 from datetime import datetime, timezone, timedelta  # Combined imports
 import bcrypt
 import sqlite3
 import os
+import secrets
+
+app = Flask(__name__)
+app.secret_key = secrets.token_hex(32)
+
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax"
+)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "users.db")
-
-app = Flask(__name__)
 
 # Fixed: Initialized with a proper datetime object instead of the class name
 login_attempts = {}
@@ -123,8 +130,9 @@ def login():
         log_event(f"LOGIN failed for username: {username}")
         return jsonify({"error": "Invalid credentials"}), 401
 
-    log_event(f"LOGIN success for username: {username}")
     reset_attempts(username)
+    session["user"] = username
+    log_event(f"LOGIN success for username: {username}")
     return jsonify({"message": "Login successful"}), 200
 
 @app.route("/login", methods=["GET"])
@@ -148,6 +156,24 @@ def list_users():
     rows = cursor.fetchall()
     conn.close()
     return jsonify(rows), 200
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    user = session.get("user")
+    session.clear()
+    if user:
+        log_event(f"LOGOUT for username: {user}")
+    return jsonify({"message": "Logged out"}), 200
+
+@app.route("/profile", methods=["GET"])
+def profile():
+    if "user" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    return jsonify({
+        "message": f"Welcome {session['user']}"
+    }), 200
+
 
 if __name__ == "__main__":
     init_db()
