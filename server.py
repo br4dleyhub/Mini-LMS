@@ -10,7 +10,8 @@ app.secret_key = secrets.token_hex(32)
 
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE="Lax"
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=True
 )
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -202,4 +203,7 @@ def profile():
 
 if __name__ == "__main__":
     init_db()
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        ssl_context=("cert.pem", "key.pem")
+    )
