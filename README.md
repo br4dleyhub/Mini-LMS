@@ -410,3 +410,12 @@ This phase completes the Mini-LMS by introducing a web-based frontend using HTML
 - Backend validation enforced
 - No sensitive data exposed in UI
 - Known limitations: no HTTPS, no sessions, no CSRF protection
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Security Focus
+
+This project intentionally evolved from an insecure prototype into a hardened web application in order to demonstrate secure coding practices and threat mitigation.
