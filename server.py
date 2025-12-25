@@ -68,6 +68,14 @@ def init_db():
     conn.commit()
     conn.close()
 
+@app.after_request
+def set_security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    response.headers["Content-Security-Policy"] = "default-src 'self'"
+    return response
+
 @app.route("/")
 def home():
     return "Mini-LMS server is running"
