@@ -22,6 +22,11 @@ login_attempts = {}
 MAX_ATTEMPTS = 5
 BLOCK_TIME = timedelta(minutes=10)
 
+def generate_csrf_token():
+    if "csrf_token" not in session:
+        session["csrf_token"] = secrets.token_hex(32)
+    return session["csrf_token"]
+
 def is_blocked(username):
     attempt = login_attempts.get(username)
     if not attempt:
@@ -76,6 +81,13 @@ def register():
     password = data.get("password")
     role = data.get("role")
 
+    token = data.get("csrf_token")
+    session_token = session.get("csrf_token")
+
+    if not token or token != session_token:
+        log_event("CSRF validation failed")
+        return jsonify({"error": "Invalid CSRF token"}), 403
+
     if not username or not password or not role:
         return jsonify({"error": "Missing fields"}), 400
 
@@ -94,7 +106,10 @@ def register():
 
 @app.route("/register", methods=["GET"])
 def register_page():
-    return render_template("register.html")
+    return render_template(
+        "register.html",
+        csrf_token=generate_csrf_token()
+    )
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -102,6 +117,13 @@ def login():
     data = request.get_json() if request.is_json else request.form
     username = data.get("username")
     password = data.get("password")
+
+    token = data.get("csrf_token")
+    session_token = session.get("csrf_token")
+
+    if not token or token != session_token:
+        log_event("CSRF validation failed")
+        return jsonify({"error": "Invalid CSRF token"}), 403
 
     if not username or not password:
         return jsonify({"error": "Missing credentials"}), 400
@@ -137,7 +159,10 @@ def login():
 
 @app.route("/login", methods=["GET"])
 def login_page():
-    return render_template("login.html")
+    return render_template(
+        "login.html",
+        csrf_token=generate_csrf_token()
+    )
 
 @app.route("/privacy", methods=["GET"])
 def privacy_notice():

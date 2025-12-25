@@ -12,6 +12,7 @@
 <form method="post" action="/register">
     <label>Username:</label>
     <input type="text" name="username" required><br><br>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 
     <label>Password:</label>
     <input type="password" name="password" required><br><br>
